@@ -1,0 +1,13 @@
+<div class="chess-container">
+  <div class="chess-header">
+    <h3 class="title">Chess</h3>
+  </div>
+  <div class="row" *ngFor="let column of finalBoard; let i = index">
+    <div class="column"
+         *ngFor="let row of column; let j = index"
+         [ngStyle]="{'background-color': setBoardColor(i, j)}">
+      <img class ='pawn' src="../../assets/images/chess-pieces/chess-pawn.png" *ngIf="finalBoard[i][j].piece === 'PAWN'"/>
+      <img class ='rook' src="../../assets/images/chess-pieces/chess-rok.png" *ngIf="finalBoard[i][j].piece === 'ROOK'"/>
+    </div>
+  </div>
+</div>

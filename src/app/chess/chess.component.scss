@@ -1,0 +1,31 @@
+.chess-header {
+  color: #fff;
+  padding: 5px 15px 0px 0px;
+  position: relative;
+  text-align: center;
+}
+.chess-container {
+  width: 890px;
+  height: 905px;
+  position: relative;
+  display: block;
+  margin: auto;
+  background-color: #47565A;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+}
+.row {
+  height: 102.5px;
+  margin-left: 3.7%;
+}
+
+.column {
+  border: 2px solid rgba(65, 86, 85, 0.1);
+  width: 102.5px;
+  height: 102.5px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.pawn {
+  position: absolute;
+}
