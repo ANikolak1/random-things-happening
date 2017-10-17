@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {COLORS} from "./constants";
+import {COLORS, PIECES} from "./constants";
 import {ChessService} from "./chess.service";
 
 @Component({
@@ -43,8 +43,7 @@ export class ChessComponent {
       return COLORS.WHITE_TILE
     } else if (this.finalBoard[i][j].whiteTile === false) {
       return COLORS.BLACK_TILE;
-    }
-    return COLORS.BLACK_TILE;
+    } return COLORS.BLACK_TILE;
   }
 
   getPiece(a: any): any {
@@ -69,6 +68,50 @@ export class ChessComponent {
       return 'ROOK'
     } else if (a === "h1") {
       return 'ROOK'
+    }else if (a === "d1") {
+      return 'KING'
+    }else if (a === "e1") {
+      return 'QUEEN'
+    }else if (a === "b1") {
+      return 'KNIGHT'
+    }else if (a === "g1") {
+      return 'KNIGHT'
+    }else if (a === "c1") {
+      return 'BISHOP'
+    }else if (a === "f1") {
+      return 'BISHOP'
+    }else if (a === "a7") {
+      return 'WPAWN'
+    } else if (a === "b7") {
+      return 'WPAWN'
+    } else if (a === "c7") {
+      return 'WPAWN'
+    } else if (a === "d7") {
+      return 'WPAWN'
+    } else if (a === "e7") {
+      return 'WPAWN'
+    } else if (a === "f7") {
+      return 'WPAWN'
+    } else if (a === "g7") {
+      return 'WPAWN'
+    } else if (a === "h7") {
+      return 'WPAWN'
+    } else if (a === "a8") {
+      return 'WROOK'
+    } else if (a === "h8") {
+      return 'WROOK'
+    }else if (a === "e8") {
+      return 'WKING'
+    }else if (a === "d8") {
+      return 'WQUEEN'
+    }else if (a === "b8") {
+      return 'WKNIGHT'
+    }else if (a === "g8") {
+      return 'WKNIGHT'
+    }else if (a === "c8") {
+      return 'WBISHOP'
+    }else if (a === "f8") {
+      return 'WBISHOP'
     } else return ""
   }
 }

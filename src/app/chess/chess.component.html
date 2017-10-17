@@ -2,12 +2,28 @@
   <div class="chess-header">
     <h3 class="title">Chess</h3>
   </div>
-  <div class="row" *ngFor="let column of finalBoard; let i = index">
+  <div class="row"
+       *ngFor="let column of finalBoard; let i = index"
+       [attr.id]="'row' + i">
     <div class="column"
          *ngFor="let row of column; let j = index"
-         [ngStyle]="{'background-color': setBoardColor(i, j)}">
-      <img class ='pawn' src="../../assets/images/chess-pieces/chess-pawn.png" *ngIf="finalBoard[i][j].piece === 'PAWN'"/>
-      <img class ='rook' src="../../assets/images/chess-pieces/chess-rok.png" *ngIf="finalBoard[i][j].piece === 'ROOK'"/>
+         [ngStyle]="{'background-color': setBoardColor(i, j)}"
+         [attr.id]="'column' + j">
+      <div class="piece-container">
+      <img class='pawn' [attr.id]="'pawn' + j" src="../../assets/images/chess-pieces/chess-pawn.png" *ngIf="column[j].piece === 'PAWN'"/>
+      <img class='rook' [attr.id]="'rook' + j" src="../../assets/images/chess-pieces/chess-rok.png" *ngIf="column[j].piece === 'ROOK'"/>
+      <img class='king' [attr.id]="'king'" src="../../assets/images/chess-pieces/chess-king.png" *ngIf="column[j].piece === 'KING'"/>
+      <img class='queen' [attr.id]="'queen'" src="../../assets/images/chess-pieces/chess-queen.png" *ngIf="column[j].piece === 'QUEEN'"/>
+      <img class='knight' [attr.id]="'knight' + j" src="../../assets/images/chess-pieces/chess-knight.png" *ngIf="column[j].piece === 'KNIGHT'"/>
+      <img class='bishop' [attr.id]="'bishop' + j" src="../../assets/images/chess-pieces/bishop.png" *ngIf="column[j].piece === 'BISHOP'"/>
+
+        <img class='wpawn' [attr.id]="'wpawn' + j" src="../../assets/images/chess-pieces/chess-pawn.png" *ngIf="column[j].piece === 'WPAWN'"/>
+        <img class='wrook' [attr.id]="'wrook' + j" src="../../assets/images/chess-pieces/chess-rok.png" *ngIf="column[j].piece === 'WROOK'"/>
+        <img class='wking' [attr.id]="'wking'" src="../../assets/images/chess-pieces/chess-king.png" *ngIf="column[j].piece === 'WKING'"/>
+        <img class='wqueen' [attr.id]="'wqueen'" src="../../assets/images/chess-pieces/chess-queen.png" *ngIf="column[j].piece === 'WQUEEN'"/>
+        <img class='wknight' [attr.id]="'wknight' + j" src="../../assets/images/chess-pieces/chess-knight.png" *ngIf="column[j].piece === 'WKNIGHT'"/>
+        <img class='wbishop' [attr.id]="'wbishop' + j" src="../../assets/images/chess-pieces/bishop.png" *ngIf="column[j].piece === 'WBISHOP'"/>
+      </div>
     </div>
   </div>
 </div>
