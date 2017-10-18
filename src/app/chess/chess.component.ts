@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {COLORS, PIECES} from "./constants";
+import {COLORS} from "./constants";
 import {ChessService} from "./chess.service";
 
 @Component({

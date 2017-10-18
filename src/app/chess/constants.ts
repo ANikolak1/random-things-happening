@@ -1,5 +1,5 @@
 export const COLORS = {
-  WHITE_TILE: '#edeee9',
+  WHITE_TILE: '#edeee3',
   BLACK_TILE: '#7f7272'
 };
 
