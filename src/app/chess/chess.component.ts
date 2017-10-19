@@ -1,6 +1,10 @@
 import {Component} from '@angular/core';
 import {COLORS} from "./constants";
 import {ChessService} from "./chess.service";
+import {dragula, DragulaService} from "ng2-dragula";
+import {until} from "selenium-webdriver";
+import elementTextContains = until.elementTextContains;
+import {containsElement} from "@angular/animations/browser/src/render/shared";
 
 @Component({
   selector: 'app-chess',
@@ -11,8 +15,31 @@ export class ChessComponent {
   public rows = ["a", "b", "c", "d", "e", "f", "g", "h"];
   public columns = ["1", "2", "3", "4", "5", "6", "7", "8"];
   public finalBoard: Square[][] = this.setBoard(this.rows, this.columns);
+  public firstMove: boolean;
 
-  constructor(chessService: ChessService) {
+  constructor(chessService: ChessService,
+              dragulaService: DragulaService) {
+    dragulaService.setOptions('fourth-page', {copy: true, copySortSource: true});
+    dragulaService.drop.subscribe((value) => {
+      console.log(value);
+      console.log(value[2].innerText); //Where piece moved to
+      console.log(value[1].classList[0]); //What its value is (determine if white or black)
+      console.log(value[1].y);
+      console.log(value[1].x);
+      this.pawnFirstMove(value);
+      this.onDrop(value);
+    });
+  }
+
+  onDrop(value: any) {
+  if (value[2] == null)
+  return;
+  if (value[2].id !== value[2].id && value[2].id !== value[3].id)
+    value[1].remove();
+};
+
+  pawnFirstMove(value: any) {
+
   }
 
   setBoard(row: any[], column: any[]) {
@@ -33,7 +60,7 @@ export class ChessComponent {
       }
       change = !change;
     }
-    console.log(newBoard);
+    // console.log(newBoard);
     return newBoard;
   }
 

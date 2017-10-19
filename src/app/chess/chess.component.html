@@ -2,14 +2,16 @@
   <div class="chess-header">
     <h3 class="title">Chess</h3>
   </div>
+  <div class="board-container">
   <div class="row"
        *ngFor="let column of finalBoard; let i = index"
        [attr.id]="'row' + i">
-    <div class="column"
+    <div class="column" [dragula]='"fourth-bag"'
          *ngFor="let row of column; let j = index"
          [ngStyle]="{'background-color': setBoardColor(i, j)}"
          [attr.id]="'column' + j">
-      <div class="piece-container" draggable="true">
+
+      <div class="piece-container" [dragula]='"fourth-bag"'>
       <img class='pawn' [attr.id]="'pawn' + j" src="../../assets/images/chess-pieces/pawn.png" *ngIf="column[j].piece === 'PAWN'"/>
       <img class='rook' [attr.id]="'rook' + j" src="../../assets/images/chess-pieces/rook.png" *ngIf="column[j].piece === 'ROOK'"/>
       <img class='king' [attr.id]="'king'" src="../../assets/images/chess-pieces/king.png" *ngIf="column[j].piece === 'KING'"/>
@@ -24,6 +26,9 @@
         <img class='wknight' [attr.id]="'wknight' + j" src="../../assets/images/chess-pieces/tknight.png" *ngIf="column[j].piece === 'WKNIGHT'"/>
         <img class='wbishop' [attr.id]="'wbishop' + j" src="../../assets/images/chess-pieces/tbishop.png" *ngIf="column[j].piece === 'WBISHOP'"/>
       </div>
+
+      {{finalBoard[i][j].id}}
     </div>
   </div>
+</div>
 </div>

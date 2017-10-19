@@ -15,6 +15,7 @@ import {StockService} from "./stock/stock.service";
 import { NavigationComponent } from './navigation/navigation.component';
 import { ChessComponent } from './chess/chess.component';
 import {ChessService} from "./chess/chess.service";
+import {DragulaModule, DragulaService} from "ng2-dragula";
 
 @NgModule({
   declarations: [
@@ -30,8 +31,9 @@ import {ChessService} from "./chess/chess.service";
     HttpModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    DragulaModule,
   ],
-  providers: [StockService, SnakeService, ChessService],
+  providers: [StockService, SnakeService, ChessService, DragulaService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

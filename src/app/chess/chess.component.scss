@@ -14,9 +14,13 @@
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
 }
+.board-container{
+  position: relative;
+}
 .row {
   height: 102.5px;
   margin-left: 3.7%;
+  position: relative;
 }
 
 .column {
@@ -25,55 +29,65 @@
   height: 102.5px;
   display: inline-block;
   box-sizing: border-box;
+  position: relative;
 }
 .pawn {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .king {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .queen {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .rook {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .bishop {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .knight {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .wpawn {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .wking {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .wqueen {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .wrook {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .wbishop {
   margin-top: 18.5%;
   margin-left: 13%;
+  position: absolute;
 }
 .wknight {
   margin-top: 18.5%;
   margin-left: 13%;
-}
-.draggable {
-  cursor: move;
+  position: absolute;
 }
