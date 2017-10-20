@@ -38,7 +38,7 @@ export class StockService {
   };
 
   static computePrices = (input) => {
-    console.log('computing new prices');
+    // console.log('computing new prices');
     input.forEach(function(stock, index) {
       // stocks are range-bound, once they hit a max price, they begin to fall
       if (stock.price >= 120) {

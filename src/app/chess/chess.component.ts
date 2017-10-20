@@ -9,7 +9,10 @@ import {containsElement} from "@angular/animations/browser/src/render/shared";
 @Component({
   selector: 'app-chess',
   templateUrl: './chess.component.html',
-  styleUrls: ['./chess.component.scss']
+  styleUrls: ['./chess.component.scss'],
+  host: {
+    '(document:mouseenter)': 'myMethod($event)'
+  }
 })
 export class ChessComponent {
   public rows = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -20,13 +23,17 @@ export class ChessComponent {
   constructor(chessService: ChessService,
               dragulaService: DragulaService) {
     dragulaService.setOptions('fourth-page', {copy: true, copySortSource: true});
+    dragulaService.drag.subscribe((value) => {
+      // console.log(value);
+      // console.log(value[2].parentElement.innerText);
+      // console.log(value[2].parentElement.offsetParent)
+    });
     dragulaService.drop.subscribe((value) => {
-      console.log(value);
-      console.log(value[2].innerText); //Where piece moved to
-      console.log(value[1].classList[0]); //What its value is (determine if white or black)
-      console.log(value[1].y);
-      console.log(value[1].x);
-      this.pawnFirstMove(value);
+      // console.log(value);
+      // console.log(value[2].innerText); //Where piece moved to
+      // console.log(value[1].classList[0]); //What its value is (determine if white or black)
+      // console.log(value[1].y);
+      // console.log(value[1].x);
       this.onDrop(value);
     });
   }
@@ -37,9 +44,9 @@ export class ChessComponent {
   if (value[2].id !== value[2].id && value[2].id !== value[3].id)
     value[1].remove();
 };
-
-  pawnFirstMove(value: any) {
-
+  myMethod(e) {
+    console.log(e.toElement.title);
+    // console.log(e.toElement);
   }
 
   setBoard(row: any[], column: any[]) {
