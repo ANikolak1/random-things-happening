@@ -6,10 +6,10 @@
   <div class="row"
        *ngFor="let column of finalBoard; let i = index"
        [attr.id]="'row' + i">
-    <div class="column" [dragula]='"fourth-bag"' (mousemove)="myMethod($event)" (mouseenter)="myMethod($event)"
+    <div class="column" [dragula]='"fourth-bag"' (mousemove)="myMouseMove($event)" (mouseenter)="myMethod($event)"
          *ngFor="let row of column; let j = index"
          [ngStyle]="{'background-color': setBoardColor(i, j)}"
-         [attr.id]="'column' + j" title="{{finalBoard[i][j].id}}">
+         [attr.id]="'column' + j" title="{{finalBoard[i][j].id}}"> {{row.id}}
 
       <div class="piece-container" [dragula]='"fourth-bag"'>
       <img class='pawn' [attr.id]="'pawn' + j" src="../../assets/images/chess-pieces/pawn.png" *ngIf="column[j].piece === 'PAWN'"/>

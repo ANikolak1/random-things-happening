@@ -1,17 +1,15 @@
 import {Component} from '@angular/core';
 import {COLORS} from "./constants";
 import {ChessService} from "./chess.service";
-import {dragula, DragulaService} from "ng2-dragula";
-import {until} from "selenium-webdriver";
-import elementTextContains = until.elementTextContains;
-import {containsElement} from "@angular/animations/browser/src/render/shared";
+import {DragulaService} from "ng2-dragula";
 
 @Component({
   selector: 'app-chess',
   templateUrl: './chess.component.html',
   styleUrls: ['./chess.component.scss'],
   host: {
-    '(document:mouseenter)': 'myMethod($event)'
+    '(document:mouseenter)': 'myMethod($event)',
+    '(document:mousemove)': 'myMouseMove($event)'
   }
 })
 export class ChessComponent {
@@ -19,23 +17,27 @@ export class ChessComponent {
   public columns = ["1", "2", "3", "4", "5", "6", "7", "8"];
   public finalBoard: Square[][] = this.setBoard(this.rows, this.columns);
   public firstMove: boolean;
+  public currentTile: any;
+  public currentPiece: any;
 
   constructor(chessService: ChessService,
               dragulaService: DragulaService) {
     dragulaService.setOptions('fourth-page', {copy: true, copySortSource: true});
     dragulaService.drag.subscribe((value) => {
+      console.log(this.currentPiece);
+      console.log(this.currentTile);
       // console.log(value);
       // console.log(value[2].parentElement.innerText);
       // console.log(value[2].parentElement.offsetParent)
     });
-    dragulaService.drop.subscribe((value) => {
-      // console.log(value);
-      // console.log(value[2].innerText); //Where piece moved to
-      // console.log(value[1].classList[0]); //What its value is (determine if white or black)
-      // console.log(value[1].y);
-      // console.log(value[1].x);
-      this.onDrop(value);
-    });
+    if (this.currentPiece == 'pawn') {
+      dragulaService.drop.subscribe((value) => {
+        console.log(value);
+        // console.log(value[2].innerText); //Where piece moved to
+        // console.log(value[1].classList[0]); //What its value is (determine if white or black)
+        this.onDrop(value);
+      });
+    }
   }
 
   onDrop(value: any) {
@@ -45,8 +47,13 @@ export class ChessComponent {
     value[1].remove();
 };
   myMethod(e) {
-    console.log(e.toElement.title);
-    // console.log(e.toElement);
+    // console.log(e.toElement.title);
+    this.currentTile = e.toElement.title;
+
+  }
+  myMouseMove(e) {
+    // console.log(e.toElement.className);
+    this.currentPiece = e.toElement.className;
   }
 
   setBoard(row: any[], column: any[]) {

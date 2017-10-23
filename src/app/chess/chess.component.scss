@@ -91,3 +91,7 @@
   margin-left: 13%;
   position: absolute;
 }
+.column:nth-child(odd):hover {
+  background-color: #c7c54d !important;
+  opacity: .85;
+}
