@@ -31,7 +31,6 @@ import {DragulaModule, DragulaService} from "ng2-dragula";
     HttpModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    DragulaModule,
   ],
   providers: [StockService, SnakeService, ChessService, DragulaService],
   bootstrap: [AppComponent],

@@ -1,14 +1,16 @@
 import {Component} from '@angular/core';
 import {COLORS} from "./constants";
-import {ChessService} from "./chess.service";
-import {DragulaService} from "ng2-dragula";
+import {Draggable} from '@shopify/draggable';
+import {MouseSensor} from '@shopify/draggable';
+import {Sortable} from '@shopify/draggable';
+import {Droppable} from '@shopify/draggable';
 
 @Component({
   selector: 'app-chess',
   templateUrl: './chess.component.html',
   styleUrls: ['./chess.component.scss'],
   host: {
-    '(document:mouseenter)': 'myMethod($event)',
+    '(document:mouseenter)': 'movePiece($event)',
     '(document:mousemove)': 'myMouseMove($event)'
   }
 })
@@ -20,41 +22,53 @@ export class ChessComponent {
   public currentTile: any;
   public currentPiece: any;
 
-  constructor(chessService: ChessService,
-              dragulaService: DragulaService) {
-    dragulaService.setOptions('fourth-page', {copy: true, copySortSource: true});
-    dragulaService.drag.subscribe((value) => {
-      console.log(this.currentPiece);
-      console.log(this.currentTile);
-      // console.log(value);
-      // console.log(value[2].parentElement.innerText);
-      // console.log(value[2].parentElement.offsetParent)
-    });
-    if (this.currentPiece == 'pawn') {
-      dragulaService.drop.subscribe((value) => {
-        console.log(value);
-        // console.log(value[2].innerText); //Where piece moved to
-        // console.log(value[1].classList[0]); //What its value is (determine if white or black)
-        this.onDrop(value);
-      });
-    }
+  constructor() {
+    // dragulaService.setOptions('fourth-page', {copy: true, copySortSource: true});
+    // dragulaService.drag.subscribe((value) => {
+    //   console.log(this.currentPiece);
+    //   console.log(this.currentTile);
+    //   // console.log(value);
+    //   // console.log(value[2].parentElement.innerText);
+    //   // console.log(value[2].parentElement.offsetParent)
+    // });
+    // dragulaService.drop.subscribe((value) => {
+    //   // console.log(value);
+    //   // console.log(value[2].innerText); //Where piece moved to
+    //   // console.log(value[1].classList[0]); //What its value is (determine if white or black)
+    //   this.onDrop(value);
+    //   });
+    this.movePiece();
   }
 
-  onDrop(value: any) {
-  if (value[2] == null)
-  return;
-  if (value[2].id !== value[2].id && value[2].id !== value[3].id)
-    value[1].remove();
-};
+//   onDrop(value: any) {
+//   if (value[2] == null)
+//   return;
+//   if (value[2].id !== value[2].id && value[2].id !== value[3].id)
+//     value[1].remove();
+// };
   myMethod(e) {
     // console.log(e.toElement.title);
     this.currentTile = e.toElement.title;
-
   }
+
   myMouseMove(e) {
     // console.log(e.toElement.className);
     this.currentPiece = e.toElement.className;
   }
+
+  movePiece() {
+    new Sortable(document.querySelectorAll('.column'), {
+      // , {draggable: '.piece-container', delay: 100})
+      draggable: '.piece-container',
+      appendTo: '.column'
+    })
+      .on('drag:start', () => console.log(this.currentPiece))
+      .on('drag:move', () => console.log(this.currentTile))
+      .on('drag:stop', e => {
+        let temp = this.finalBoard.splice(e.data.oldIndex, 1)[0];
+        this.finalBoard.splice(e.data.newIndex, 0, temp);
+      })
+  };
 
   setBoard(row: any[], column: any[]) {
     let newBoard: Square[][];
@@ -84,7 +98,8 @@ export class ChessComponent {
       return COLORS.WHITE_TILE
     } else if (this.finalBoard[i][j].whiteTile === false) {
       return COLORS.BLACK_TILE;
-    } return COLORS.BLACK_TILE;
+    }
+    return COLORS.BLACK_TILE;
   }
 
   getPiece(a: any): any {
@@ -109,19 +124,19 @@ export class ChessComponent {
       return 'ROOK'
     } else if (a === "h1") {
       return 'ROOK'
-    }else if (a === "d1") {
+    } else if (a === "d1") {
       return 'KING'
-    }else if (a === "e1") {
+    } else if (a === "e1") {
       return 'QUEEN'
-    }else if (a === "b1") {
+    } else if (a === "b1") {
       return 'KNIGHT'
-    }else if (a === "g1") {
+    } else if (a === "g1") {
       return 'KNIGHT'
-    }else if (a === "c1") {
+    } else if (a === "c1") {
       return 'BISHOP'
-    }else if (a === "f1") {
+    } else if (a === "f1") {
       return 'BISHOP'
-    }else if (a === "a7") {
+    } else if (a === "a7") {
       return 'WPAWN'
     } else if (a === "b7") {
       return 'WPAWN'
@@ -141,17 +156,17 @@ export class ChessComponent {
       return 'WROOK'
     } else if (a === "h8") {
       return 'WROOK'
-    }else if (a === "e8") {
+    } else if (a === "e8") {
       return 'WKING'
-    }else if (a === "d8") {
+    } else if (a === "d8") {
       return 'WQUEEN'
-    }else if (a === "b8") {
+    } else if (a === "b8") {
       return 'WKNIGHT'
-    }else if (a === "g8") {
+    } else if (a === "g8") {
       return 'WKNIGHT'
-    }else if (a === "c8") {
+    } else if (a === "c8") {
       return 'WBISHOP'
-    }else if (a === "f8") {
+    } else if (a === "f8") {
       return 'WBISHOP'
     } else return ""
   }
