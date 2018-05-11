@@ -7,7 +7,7 @@
       <div class="row"
            *ngFor="let column of finalBoard; let i = index"
            [attr.id]="'row' + i">
-        <!--<div class="column BlockWrapper&#45;&#45;isDroppable"-->
+        <!--<div class="column BlockWrapper--isDroppable"-->
         <div class="column column-container"
              [dragula]='"fourth-bag"'
              (mouseenter)="myMethod($event)"
