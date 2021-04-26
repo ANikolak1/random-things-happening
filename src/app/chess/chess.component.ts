@@ -11,8 +11,8 @@ import {DragulaService} from 'ng2-dragula';
   templateUrl: './chess.component.html',
   styleUrls: ['./chess.component.scss'],
   host: {
-    '(document:mouseenter)': 'movePiece($event)',
-    '(document:mousemove)': 'myMouseMove($event)'
+    // '(document:mouseenter)': 'movePiece($event)',
+    // '(document:mousemove)': 'myMouseMove($event)',
   }
 })
 export class ChessComponent {
@@ -24,77 +24,35 @@ export class ChessComponent {
   public currentPiece: any;
 
   constructor(private dragulaService: DragulaService) {
-    dragulaService.setOptions('fourth-page', {copy: true, copySortSource: true});
-    dragulaService.drag.subscribe((value) => {
-      // console.log(this.currentPiece);
-      // console.log(this.currentTile);
-      console.log(value);
-      // console.log(value[2].parentElement.innerText);
-      // console.log(value[2].parentElement.offsetParent)
+    dragulaService.dropModel.subscribe((value) => {
+      console.log('hi');
+      // this.onDrop(value.slice(1));
     });
-    dragulaService.drop.subscribe((value) => {
-      // console.log(value);
-      // console.log(value[2].innerText); //Where piece moved to
-      // console.log(value[1].classList[0]); //What its value is (determine if white or black)
-      this.onDrop(value);
-      });
-    this.movePiece();
+    dragulaService.removeModel.subscribe((value) => {
+      this.onRemoveModel(value.slice(1));
+    });
   }
 
-  onDrop(value: any) {
-    if (value[2] === null)
-      return;
-    if (value[2].id !== value[2].id && value[2].id !== value[3].id)
-      value[1].remove();
+  drop(value: any, col) {
+    console.log(value, col.id);
+
   }
+
+  onRemoveModel(value: any) {
+    let [el, source] = value;
+  }
+
+  // How to get current tile on the chess board
   myMethod(e) {
     // console.log(e.toElement.title);
     this.currentTile = e.toElement.title;
   }
 
+  // How to get the current selected piece
   myMouseMove(e) {
     // console.log(e.toElement.id);
     this.currentPiece = e.toElement.id;
   }
-
-  movePiece() {
-    new Draggable(document.querySelectorAll('.column-container'), {
-      // , {draggable: '.piece-container', delay: 100})
-      draggable: '.piece-container',
-      appendTo: '.column-container'
-    })
-      .on('drag:start', () => console.log(this.currentPiece))
-      .on('drag:move', () => console.log(this.currentTile))
-      .on('drag:stop', e => {
-        let temp = this.finalBoard.splice(e.data.oldIndex, 1)[0];
-        this.finalBoard.splice(e.data.newIndex, 0, temp);
-      });
-  }
-
-  // movePiece() {
-  //   const droppable = new Droppable(document.querySelectorAll('.BlockWrapper--isDroppable'), {
-  //     draggable: '.piece-container--isDraggable',
-  //     droppable: '.BlockWrapper--isDroppable',
-  //     mirror: {
-  //       constrainDimensions: true, },
-  //   });
-  //   let droppableOrigin;
-  //     droppable.on('drag:start', (evt) => {
-  //       const temp = this.finalBoard.splice(evt.sourceContainer, 1)[0];
-  //       this.finalBoard.splice(evt.originalSource.offsetParent, 0, temp);
-  //       console.log(evt);
-  //       droppableOrigin = evt.originalSource.parentNode.dataset.droppable;
-  //       // console.log(this.currentPiece)
-  //     });
-  //     // .on('drag:move', () => console.log(this.currentTile))
-  //     // .on('drag:stop', () => console.log("end rhherberbejktwbtwt"));
-  //   droppable.on('droppable:over', (evt => {
-  //     if (droppableOrigin !== evt.droppable.dataset.droppable) {
-  //       evt.cancel();
-  //     }
-  //   }));
-  //   return droppable;
-  // }
 
   setBoard(row: any[], column: any[]) {
     let newBoard: Square[][];

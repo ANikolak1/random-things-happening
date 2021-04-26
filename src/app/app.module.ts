@@ -16,6 +16,11 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ChessComponent } from './chess/chess.component';
 import {ChessService} from "./chess/chess.service";
 import {DragulaModule, DragulaService} from "ng2-dragula";
+import { AboutMeComponent } from './about-me/about-me.component';
+import {DraggableDirective} from '../assets/directives/draggable.directive';
+import {DroppableDirective} from '../assets/directives/droppable.directive';
+
+const directives = [DraggableDirective, DroppableDirective];
 
 @NgModule({
   declarations: [
@@ -23,7 +28,9 @@ import {DragulaModule, DragulaService} from "ng2-dragula";
     SnakeComponent,
     StockComponent,
     NavigationComponent,
-    ChessComponent
+    ChessComponent,
+    AboutMeComponent,
+    directives
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,7 @@ import {DragulaModule, DragulaService} from "ng2-dragula";
     HttpModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    DragulaModule
+    DragulaModule,
   ],
   providers: [StockService, SnakeService, ChessService, DragulaService],
   bootstrap: [AppComponent],

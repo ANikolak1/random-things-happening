@@ -26,7 +26,7 @@ import {StockService} from "./stock.service";
     ])
   ]
 })
-export class StockComponent implements OnInit{
+export class StockComponent implements OnInit {
   title = 'Stock Dashboard';
   stockPrices = [];
   stockService: StockService;
