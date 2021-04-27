@@ -13,6 +13,9 @@
     "curly": false,
     "eofline": true,
     "forin": true,
+    "deprecation": {
+      "severity": "warning"
+    },
     "import-blacklist": [
       true
     ],
@@ -63,12 +66,14 @@
     "no-non-null-assertion": true,
     "no-shadowed-variable": false,
     "no-string-literal": false,
+    "no-host-metadata-property": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
+    "no-inputs-metadata-property": true,
     "no-trailing-whitespace": false,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
+    "no-outputs-metadata-property": true,
     "no-var-keyword": false,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -124,13 +129,9 @@
       "app",
       "kebab-case"
     ],
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    /* tslint:disable:use-host-property-decorator */
-    "use-host-property-decorator": false,
     "no-input-rename": true,
     "no-output-rename": true,
-    "use-life-cycle-interface": true,
+    "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
