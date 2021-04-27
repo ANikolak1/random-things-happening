@@ -2,14 +2,19 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
-    "types": []
+    "types": [],
+    "resolveJsonModule": true
   },
   "files": [
     "main.ts",
-    "polyfills.ts"
+    "polyfills.ts",
+    "zone-flag.ts"
   ],
   "include": [
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
   ]
 }

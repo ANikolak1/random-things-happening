@@ -25,7 +25,7 @@ export class ChessComponent {
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.dropModel.subscribe((value) => {
-      console.log('hi');
+      console.log('hi', value);
       // this.onDrop(value.slice(1));
     });
     dragulaService.removeModel.subscribe((value) => {
