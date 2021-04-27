@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {SnakeService} from "./snake.service";
 import {BOARD_SIZE, COLORS, CONTROLS} from "./constants";
-import {sourceUrl} from "@angular/compiler";
 
 @Component({
   selector: 'app-snake',
@@ -43,6 +42,7 @@ export class SnakeComponent {
     x: -1,
     y: -1
   };
+  $event: KeyboardEvent;
 
   handleKeyboardEvents(e: KeyboardEvent) {
     if (e.keyCode == CONTROLS.LEFT && this.snake.direction !== CONTROLS.RIGHT) {
